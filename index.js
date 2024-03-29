@@ -15,13 +15,13 @@ const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
 
-const dbUrl=process.env.ATLAS_URL
 
+const dbUrl=process.env.ATLAS_URL
 
 const store=MongoStore.create({
     mongoUrl:dbUrl,
     crypto:{
-        secret:"mysupersecrete"
+        secret:"mysupersecretecode"
     },
     touchAfter:24*3600,
 })
@@ -31,7 +31,7 @@ store.on("error",()=>{
 })
 
 const sessionOptions={
-    store,
+    // store,
     secret:"mysupersecretecode",
     resave:false,
     saveUninitialized:true,
@@ -78,10 +78,13 @@ main().then(()=>{
 .catch(err => console.log(err));
 
 
-async function main() {
-  await mongoose.connect(dbUrl);
-}
+// async function main() {
+//   await mongoose.connect('mongodb://127.0.0.1:27017/wonderlust');
+// }
 
+async function main() {
+    await mongoose.connect(dbUrl);
+  }
 
 
 
